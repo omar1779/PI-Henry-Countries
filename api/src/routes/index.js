@@ -43,11 +43,37 @@ router.get('/countries', async (req , res)=>{
             });
             await Country.bulkCreate(data);
         }else {
-            res.send("DB HAD ALREADY DATA");
+            res.status(200);
         }
-        res.send("DB IS ALREADY FILLED");
     } catch (error) {
         console.log(error)
+    }
+'----------------------------------------------------------------------------'
+/* The above code is a function that is used to search for a country by name. */
+    if (name){
+        try {
+            let nameDb = await Country.findAll({
+                where : {
+                    name :{
+                        [Op.iLike] : '%' + name + '%'
+                    }
+                }
+            })
+            return res.status(200).json(nameDb)
+        } catch (error) {
+            res.send(error ,'no existe el pais')
+        }
+    }
+
+})
+router.get('/countries/:id', async (req , res)=>{
+    const id = req.params.id
+    console.log(id,'id de query')
+    try {
+        let idDb = await Country.findByPk(id)
+        return res.status(200).json(idDb)
+    } catch (error) {
+        console.log(error, 'soy un error');
     }
 })
 
