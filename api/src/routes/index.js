@@ -26,7 +26,7 @@ const removeCharacters = (str) => {
 router.get('/countries', async (req , res)=>{
     const name = req.query.name
     try {
-        let full = Country.findAll(); // verifico si mi tabla esta llena
+        let full = await Country.findAll(); // verifico si mi tabla esta llena
         if(!full.length) {
             const Arr = await axios.get('https://restcountries.com/v3/all')
             const data = Arr.data.map((e) => {
@@ -42,8 +42,7 @@ router.get('/countries', async (req , res)=>{
                 };
             });
             await Country.bulkCreate(data);
-        }else {
-            res.status(200);
+            res.status(200)
         }
     } catch (error) {
         console.log(error)
@@ -63,17 +62,67 @@ router.get('/countries', async (req , res)=>{
         } catch (error) {
             res.send(error ,'no existe el pais')
         }
+    } else if (req.query.filter) {
+        try {
+            let filterContinent = await Country.findAll({
+                where : {
+                    continent : req.query.filter
+                },
+                limit : 10,
+                offset : req.query.page,
+                order : [["name",req.query.order]],
+                include : {model : Activity}
+            });
+            return res.status(200).json(filterContinent)
+        } catch (error) {
+            console.log(error)
+        }
+    } else {
+        try {
+            let allCountries = await Country.findAll({
+                limit : 10,
+                offset : req.query.page,
+                order : [["name",req.query.order]],
+                include : {model : Activity}
+            });
+            res.status(200).json(allCountries)
+        } catch (error) {
+            console.log(error);
+        }
     }
-
+'---------------------------------------------------------------------------------'
 })
 router.get('/countries/:id', async (req , res)=>{
-    const id = req.params.id
-    console.log(id,'id de query')
+    const {id} = req.params
     try {
-        let idDb = await Country.findByPk(id)
+        let idDb = await Country.findByPk(id ,{
+            include : {
+                model : Activity
+            }
+        })
         return res.status(200).json(idDb)
     } catch (error) {
-        console.log(error, 'soy un error');
+        res.status(400 , error);
+    }
+})
+'----------------------------------------------------------------------------------'
+router.post('/activities', async (req , res)=>{
+    const form = req.body;
+    try {
+        let [activityCreated , created] = await Activity.findOrCreate({
+            where : {
+                name : form.name,
+                duration : form.duration,
+                difficulty : form.difficulty,
+                season : form.season
+            }
+        })
+        console.log(created)
+        /* relaciono las tablas */
+        await activityCreated.setCountries(form.countryId)
+        res.status(200).json(activityCreated)
+    } catch (error) {
+        console.log(error , 'soy un error :(')
     }
 })
 
