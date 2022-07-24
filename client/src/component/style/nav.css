@@ -1,0 +1,25 @@
+.nav{
+    background-color: black;
+    color: aliceblue;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+.container-title {
+    display: flex;
+    justify-content: flex-start;
+    font-size: 26px;
+}
+.container-list {
+    display: flex;
+    align-items: center;
+}
+.container-list-ul {
+    list-style: none;
+    display: flex;
+    width: 300px;
+    justify-content: space-between;
+    align-content: center;
+    font-size: 21px;
+}

@@ -1,9 +1,20 @@
+
 import './App.css';
+import { Route } from 'react-router-dom';
+import Nav from './component/Nav'
+/* __________________________________________________________________________ */
 function App() {
   return (
     <div className="App">
-      <h1 className='Titulo'>Henry Countries</h1>
-      <button>Bienvenido</button>
+      <Route path='/'>
+        <Nav/>
+      </Route>
+      <Route exact path='/home'>
+        <div>Search</div>
+      </Route>
+      <Route path='/detailCountry'>
+        <div>DetailCountry</div>
+      </Route>
     </div>
   );
 }
