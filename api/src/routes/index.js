@@ -95,7 +95,10 @@ router.get('/countries', async (req , res)=>{
 router.get('/countries/:id', async (req , res)=>{
     const {id} = req.params
     try {
-        let idDb = await Country.findByPk(id ,{
+        let idDb = await Country.findAll({
+            where: {
+                id : id
+            },
             include : {
                 model : Activity
             }

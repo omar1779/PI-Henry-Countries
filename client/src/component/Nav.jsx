@@ -1,5 +1,5 @@
-
 import './style/nav.css'
+
 export default function Nav (props) {
     return (
         <nav className='nav'>

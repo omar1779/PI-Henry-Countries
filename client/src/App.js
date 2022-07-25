@@ -2,6 +2,7 @@
 import './App.css';
 import { Route } from 'react-router-dom';
 import Nav from './component/Nav'
+import Home from './component/home';
 /* __________________________________________________________________________ */
 function App() {
   return (
@@ -10,10 +11,10 @@ function App() {
         <Nav/>
       </Route>
       <Route exact path='/home'>
-        <div>Search</div>
+        <Home/>
       </Route>
       <Route path='/detailCountry'>
-        <div>DetailCountry</div>
+        <div></div>
       </Route>
     </div>
   );
