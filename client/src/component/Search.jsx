@@ -2,6 +2,7 @@ import{getCountryId , getCountryName} from '../Redux/action/index'
 import React from 'react'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
+import './style/nav.css'
 
 export default function Search (){
     const dispatch = useDispatch();
@@ -24,7 +25,7 @@ export default function Search (){
         }
     }
     return(
-        <div>
+        <div className='Search'>
             <input
                 type={'text'}
                 placeholder={'Search Country'}
@@ -34,7 +35,9 @@ export default function Search (){
             />
             <button onClick={(e)=>{
                 handleClick(e)
-            }}>Search</button>
+            }}><span class="material-symbols-outlined">
+            search
+            </span></button>
         </div>
     )
 }

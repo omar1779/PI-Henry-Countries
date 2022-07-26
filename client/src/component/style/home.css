@@ -1,0 +1,28 @@
+.container-home {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(12, 12, 12);
+    height: 88.2vh;
+
+}
+.container-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+.container-filters-forms {
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+    color: aliceblue;
+}
+.container-page-control button {
+    background-color: yellow;
+    color: rgb(12, 12, 12);
+}
+.boton :hover{
+    width: 20px;
+    height: 20px;
+}

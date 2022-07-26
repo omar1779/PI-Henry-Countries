@@ -1,5 +1,7 @@
+
 .nav{
-    background-color: rgb(247, 235, 0);
+    background: rgb(255,229,0);
+    background: linear-gradient(0deg, rgba(255,229,0,1) 14%, rgba(29,29,29,1) 100%);
     color: rgb(0, 0, 0);
     display: flex;
     justify-content: space-between;
@@ -10,6 +12,7 @@
     display: flex;
     justify-content: flex-start;
     font-size: 26px;
+    text-shadow: 10px 10px 10px black;
 }
 .container-list {
     display: flex;
@@ -21,5 +24,38 @@
     width: 300px;
     justify-content: space-between;
     align-content: center;
-    font-size: 21px;
+    font-size: 25px;
+    text-shadow: 10px 10px 10px black;
+}
+.container-list-ul a {
+    color: black;
+}
+.Search{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+input {
+    font-family: 'Maven Pro', sans-serif;
+    width: 250px;
+    height: 40px;
+    border-radius: 10px;
+    background-color: rgb(12, 12, 12);
+    color: white;
+    outline: none;
+    font-size: 20px;
+    margin-right: 10px;
+}
+button {
+    background-color: rgb(12, 12, 12);
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+}
+button :hover {
+    cursor: pointer;
+}
+span {
+    color: rgb(255, 255, 255);
+    background-color: rgb(12, 12, 12);
 }

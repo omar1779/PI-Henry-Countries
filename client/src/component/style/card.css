@@ -1,0 +1,11 @@
+img {
+    width: 250px;
+    height: 150px;
+}
+.CountryCard {
+    margin: 30px;
+    text-decoration: none;
+    color: antiquewhite;
+    text-align: center;
+}
+

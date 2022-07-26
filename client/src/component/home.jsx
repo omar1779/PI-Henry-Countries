@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { getCountryFilter} from '../Redux/action/index.js'
 import {useDispatch, useSelector} from 'react-redux'
 import {NavLink} from 'react-router-dom'
-import Search from "./Search";
+import './style/home.css'
 
 export default function Home (){
     const [order, setOrder] = useState("ASC");
@@ -35,9 +35,13 @@ export default function Home (){
         e.preventDefault();
         setOrder(e.target.value)
     }
+    const changeFilter = (e) =>{
+        e.preventDefault();
+        setFilter(e.target.value)
+    }
     return (
-        <div>
-            <Search/>
+        <div className="container-home">
+            <div className="container-cards">
             {countries?.map((c)=>{
                 return(
                     <Fragment>
@@ -52,14 +56,24 @@ export default function Home (){
                     </Fragment>
                 )
             })}
-            <div>
-                <h5>list order forms :</h5>
+            </div>
+            {/* Africa, Americas, Asia, Europe, Oceania */}
+            <div className="container-filters-forms">
+                <h4>list order forms :</h4>
                 <select onChange={(e)=>{changeOrder(e)}}>
                     <option value="ASC">Ascending</option>
                     <option value="DESC">Descending</option>
                 </select>
+                <h4>list order forms :</h4>
+                <select onChange={(e)=>{changeFilter(e)}}>
+                    <option value="Africa">Africa</option>
+                    <option value="Americas">Americas</option>
+                    <option value="Asia">Asia</option>
+                    <option value="Europe">Europe</option>
+                    <option value="Oceania">Oceania</option>
+                </select>
             </div>
-            <div>
+            <div className="container-page-control">
                 <button onClick={
                     (e)=>{prev(e)}
                     }disabled={page <=0}
