@@ -1,0 +1,25 @@
+.containerForm{
+    background-color: rgb(12, 12, 12);
+    height: 88.2vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: rgb(255,229,0);
+    width: 350px;
+    height: 600px;
+    border-radius: 20px;
+}
+.inputRadio{
+    display: flex;
+    flex-direction: column;
+}
+.radio {
+    height: 20px;
+    width: 20px;
+}

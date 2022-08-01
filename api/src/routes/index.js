@@ -34,7 +34,7 @@ router.get('/countries', async (req , res)=>{
                 id: e.cca3,
                 name: removeCharacters(e.name.common),
                 flag: e.flags[1],
-                continent: e.continents[0],
+                continent: e.region,
                 capital: e.capital ? e.capital[0] : "doesn't have capital",
                 subregion: e.subregion,
                 area: e.area,
@@ -62,11 +62,27 @@ router.get('/countries', async (req , res)=>{
         } catch (error) {
             res.send(error ,'no existe el pais')
         }
-    } else if (req.query.filter) {
+    }  else if(req.query.filter === 'Population'){
+        try {
+            let allForPopulation = await Country.findAll({
+                limit : 10,
+                offset : req.query.page,
+                order : [["population",req.query.order]],
+                include : {model : Activity}
+            });
+            res.status(200).json(allForPopulation)
+        } catch (error) {
+            console.log(error);
+        }
+    }  else if (req.query.filter) {
         try {
             let filterContinent = await Country.findAll({
                 where : {
-                    continent : req.query.filter
+                    continent : req.query.filter,
+                    /* [Op.or]: [{
+                        continent: req.query.filter}, {
+                        population: req.query.filter
+                    }] */
                 },
                 limit : 10,
                 offset : req.query.page,
@@ -77,7 +93,7 @@ router.get('/countries', async (req , res)=>{
         } catch (error) {
             console.log(error)
         }
-    } else {
+    }else {
         try {
             let allCountries = await Country.findAll({
                 limit : 10,
@@ -90,7 +106,6 @@ router.get('/countries', async (req , res)=>{
             console.log(error);
         }
     }
-'---------------------------------------------------------------------------------'
 })
 router.get('/countries/:id', async (req , res)=>{
     const {id} = req.params
@@ -108,7 +123,14 @@ router.get('/countries/:id', async (req , res)=>{
         res.status(400 , error);
     }
 })
-'----------------------------------------------------------------------------------'
+router.get('/activities',async (req , res)=>{
+    try {
+        const getActivities = await Activity.findAll()
+        return res.status(200).json(getActivities)
+    } catch (error) {
+        res.status(400)
+    }
+})
 router.post('/activities', async (req , res)=>{
     const form = req.body;
     try {
@@ -120,7 +142,7 @@ router.post('/activities', async (req , res)=>{
                 season : form.season
             }
         })
-        console.log(created)
+        console.log(created)//devuelve true si crea la tabla
         /* relaciono las tablas */
         await activityCreated.setCountries(form.countryId)
         res.status(200).json(activityCreated)

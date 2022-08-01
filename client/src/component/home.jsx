@@ -50,6 +50,7 @@ export default function Home (){
                             name={c.name}
                             flag={c.flag}
                             continent={c.continent}
+                            population={c.population}
                             key={c.id}
                         />
                         </NavLink>
@@ -57,33 +58,37 @@ export default function Home (){
                 )
             })}
             </div>
-            {/* Africa, Americas, Asia, Europe, Oceania */}
-            <div className="container-filters-forms">
-                <h4>list order forms :</h4>
-                <select onChange={(e)=>{changeOrder(e)}}>
-                    <option value="ASC">Ascending</option>
-                    <option value="DESC">Descending</option>
-                </select>
-                <h4>list order forms :</h4>
-                <select onChange={(e)=>{changeFilter(e)}}>
-                    <option value="Africa">Africa</option>
-                    <option value="Americas">Americas</option>
-                    <option value="Asia">Asia</option>
-                    <option value="Europe">Europe</option>
-                    <option value="Oceania">Oceania</option>
-                </select>
-            </div>
-            <div className="container-page-control">
-                <button onClick={
-                    (e)=>{prev(e)}
-                    }disabled={page <=0}
-                    >Prev
-                </button>
-                <button onClick={
-                    (e)=>{next(e)}
-                    }disabled={countries.length < 10}
-                    >Next
-                </button>
+            <div className="filter">
+            {/* -------------------------------------------------------- */}
+                <div className="container-filters-forms">
+                    <h3>list order forms :</h3>
+                    <select onChange={(e)=>{changeOrder(e)}}>
+                        <option value="ASC">Ascending</option>
+                        <option value="DESC">Descending</option>
+                    </select>
+                    <h4>list order forms :</h4>
+                    <select onChange={(e)=>{changeFilter(e)}}>
+                        <option value="">All countries</option>
+                        <option value="Africa">Africa</option>
+                        <option value="Americas">Americas</option>
+                        <option value="Asia">Asia</option>
+                        <option value="Europe">Europe</option>
+                        <option value="Oceania">Oceania</option>
+                        <option value="Population">Population</option>
+                    </select>
+                </div>
+                <div className="container-page-control">
+                    <button onClick={
+                        (e)=>{prev(e)}
+                        }disabled={page <=0}
+                        >Prev
+                    </button>
+                    <button onClick={
+                        (e)=>{next(e)}
+                        }disabled={countries.length < 10}
+                        >Next
+                    </button>
+                </div>
             </div>
         </div>
     )

@@ -1,0 +1,16 @@
+.container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(12, 12, 12);
+    height: 88.2vh;
+}
+.container-activity{
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+.activity{
+    color: antiquewhite;
+}

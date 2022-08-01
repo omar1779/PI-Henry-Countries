@@ -4,8 +4,8 @@ import { Route } from 'react-router-dom';
 import Nav from './component/Nav'
 import Home from './component/home';
 import Welcome from './component/welcome';
-
-
+import CountryDetail from './component/CountryDetail';
+import CreateActivity from './component/CreateActivity';
 /* __________________________________________________________________________ */
 function App() {
     return (
@@ -17,14 +17,15 @@ function App() {
             <Nav/>
             <Home/>
         </Route>
-        <Route path='/detailCountry'>
-            <Nav/>
-        </Route>
+        <Route exact path="/home/:id"component={Nav} />
+        <Route exact path="/home/:id"component={CountryDetail} />
         <Route path='/activity'>
             <Nav/>
+            <CreateActivity/>
         </Route>
         <Route path='/aboutme'>
             <Nav/>
+            
         </Route>
         </div>
     );
