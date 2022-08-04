@@ -23,7 +23,7 @@ const removeCharacters = (str) => {
     return Arr.data;
 } */
 
-router.get('/countries', async (req , res)=>{
+router.get('/countries', async (req , res,next)=>{
     const name = req.query.name
     try {
         let full = await Country.findAll(); // verifico si mi tabla esta llena
@@ -45,7 +45,7 @@ router.get('/countries', async (req , res)=>{
             res.status(200)
         }
     } catch (error) {
-        console.log(error)
+        next(error)
     }
 '----------------------------------------------------------------------------'
 /* The above code is a function that is used to search for a country by name. */
@@ -56,11 +56,12 @@ router.get('/countries', async (req , res)=>{
                     name :{
                         [Op.iLike] : '%' + name + '%'
                     }
-                }
+                },
+                include : {model : Activity}
             })
             return res.status(200).json(nameDb)
         } catch (error) {
-            res.send(error ,'no existe el pais')
+            next(error ,'no existe el pais')
         }
     }  else if(req.query.filter === 'Population'){
         try {
@@ -72,17 +73,13 @@ router.get('/countries', async (req , res)=>{
             });
             res.status(200).json(allForPopulation)
         } catch (error) {
-            console.log(error);
+            next(error);
         }
     }  else if (req.query.filter) {
         try {
             let filterContinent = await Country.findAll({
                 where : {
                     continent : req.query.filter,
-                    /* [Op.or]: [{
-                        continent: req.query.filter}, {
-                        population: req.query.filter
-                    }] */
                 },
                 limit : 10,
                 offset : req.query.page,
@@ -91,7 +88,7 @@ router.get('/countries', async (req , res)=>{
             });
             return res.status(200).json(filterContinent)
         } catch (error) {
-            console.log(error)
+            next(error)
         }
     }else {
         try {
@@ -103,7 +100,7 @@ router.get('/countries', async (req , res)=>{
             });
             res.status(200).json(allCountries)
         } catch (error) {
-            console.log(error);
+            next(error);
         }
     }
 })
@@ -120,7 +117,7 @@ router.get('/countries/:id', async (req , res)=>{
         })
         return res.status(200).json(idDb)
     } catch (error) {
-        res.status(400 , error);
+        next(400 , error);
     }
 })
 router.get('/activities',async (req , res)=>{
@@ -128,7 +125,7 @@ router.get('/activities',async (req , res)=>{
         const getActivities = await Activity.findAll()
         return res.status(200).json(getActivities)
     } catch (error) {
-        res.status(400)
+        next(error)
     }
 })
 router.post('/activities', async (req , res)=>{
@@ -147,7 +144,7 @@ router.post('/activities', async (req , res)=>{
         await activityCreated.setCountries(form.countryId)
         res.status(200).json(activityCreated)
     } catch (error) {
-        console.log(error , 'soy un error :(')
+        next(error)
     }
 })
 

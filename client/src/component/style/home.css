@@ -5,7 +5,14 @@
     align-items: center;
     background-color: rgb(12, 12, 12);
     height: 88.2vh;
-
+    animation: move 3s;
+}
+@keyframes move {
+    10%{opacity: 0;}
+    30%{opacity: 0.3;}
+    60%{opacity: 0.5;}
+    90%{opacity: 0.7;}
+    100%{opacity: 1;}
 }
 .container-cards {
     display: flex;
@@ -13,10 +20,18 @@
     justify-content: space-evenly;
 }
 .container-filters-forms {
-    width: 50%;
+    width: 10%;
     display: flex;
     justify-content: space-around;
     color: aliceblue;
+    flex-direction: column;
+    background-color: yellow;
+    color: rgb(12, 12, 12);
+    margin: 30px;
+    border-radius: 5px;
+}
+h3{
+    margin:0;
 }
 .container-page-control button {
     background-color: yellow;

@@ -1,5 +1,3 @@
-import React, { Fragment } from "react";
-import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getCountryId } from "../Redux/action";
@@ -19,7 +17,7 @@ export default function CountryDetail (props){
             <div className="detail">
             {idCountry?.map((c)=>{
                 return(
-                    <Fragment>
+                    <div className="container-card">
                         <CountryCard
                         flag = {c.flag}
                         name = {c.name}
@@ -30,6 +28,7 @@ export default function CountryDetail (props){
                         area = {`Area :${c.area} Km2`}
                         population = {c.population}
                         />
+                        <div className="container-activities">
                         {c.Activities?.map((element)=>{
                             return(
                                     <Activity
@@ -40,7 +39,8 @@ export default function CountryDetail (props){
                                     />
                             )
                         })}
-                    </Fragment>
+                        </div>
+                    </div>
                 )
             })}
             </div>

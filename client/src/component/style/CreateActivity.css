@@ -1,9 +1,25 @@
+
 .containerForm{
     background-color: rgb(12, 12, 12);
     height: 88.2vh;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.alert{
+    text-align: center;
+    color: aliceblue;
+    margin: 0;
+}
+.containerDivide{
+    background-color: rgb(12, 12, 12);
+    height: 88.2vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    animation-name: move;
+    animation-duration: 2s;
+    animation-timing-function: ease-out;
 }
 .form{
     display: flex;
@@ -12,9 +28,11 @@
     flex-direction: column;
     background: rgb(255,229,0);
     width: 375px;
-    height: 625px;
+    height: 650px;
     border-radius: 20px;
     transition: 700ms;
+    margin-right: 50px;
+    margin-left: 50px;
 }
 .form:hover{
     box-shadow: 20px 20px 20px rgb(255,229,0);
@@ -38,5 +56,31 @@
     margin-right: 5px;
     color:aliceblue;
     width: 100px;
+    cursor: pointer;
+}
+@keyframes move {
+    from {
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+.container-title-activity{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.title{
+    color: aliceblue;
+    font-size: 100px;
+}
+.return-activity{
+    background-color: yellow;
+    width: 300px;
+    height: 100px;
+    font-size: 20px;
     cursor: pointer;
 }

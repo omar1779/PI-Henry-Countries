@@ -1,4 +1,3 @@
-import React, { Fragment } from "react";
 import CountryCard from './CountryCard'
 import { useState, useEffect } from "react";
 import { getCountryFilter} from '../Redux/action/index.js'
@@ -25,9 +24,9 @@ export default function Home (){
     }
     const next = (e) =>{
         e.preventDefault();
-        if (countries.length < 10) {
-            return;
-        } else {
+        if (page === 240) {
+            setPage(0)
+        }else {
             setPage(page + 10)
         }
     }
@@ -41,32 +40,14 @@ export default function Home (){
     }
     return (
         <div className="container-home">
-            <div className="container-cards">
-            {countries?.map((c)=>{
-                return(
-                    <Fragment>
-                        <NavLink to={'/home/'+ c.id}>
-                        <CountryCard
-                            name={c.name}
-                            flag={c.flag}
-                            continent={c.continent}
-                            population={c.population}
-                            key={c.id}
-                        />
-                        </NavLink>
-                    </Fragment>
-                )
-            })}
-            </div>
             <div className="filter">
-            {/* -------------------------------------------------------- */}
                 <div className="container-filters-forms">
                     <h3>list order forms :</h3>
                     <select onChange={(e)=>{changeOrder(e)}}>
                         <option value="ASC">Ascending</option>
                         <option value="DESC">Descending</option>
                     </select>
-                    <h4>list order forms :</h4>
+                    <h3>list order forms :</h3>
                     <select onChange={(e)=>{changeFilter(e)}}>
                         <option value="">All countries</option>
                         <option value="Africa">Africa</option>
@@ -85,10 +66,23 @@ export default function Home (){
                     </button>
                     <button onClick={
                         (e)=>{next(e)}
-                        }disabled={countries.length < 10}
+                        }/* disabled={countries.length < 10} */
                         >Next
                     </button>
                 </div>
+            </div>
+            <div className="container-cards">
+            {countries?.map((c)=>
+                        <NavLink to={'/home/'+ c.id}>
+                            <CountryCard
+                                key={c.id}
+                                name={c.name}
+                                flag={c.flag}
+                                continent={c.continent}
+                                population={c.population}
+                            />
+                        </NavLink>
+            )}
             </div>
         </div>
     )

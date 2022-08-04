@@ -5,6 +5,14 @@
     align-items: center;
     height: 100vh;
     background-image: url(https://images5.alphacoders.com/353/thumb-1920-353018.jpg);
+    animation: move 4s;
+}
+@keyframes move {
+    10%{opacity: 0;}
+    30%{opacity: 0.3;}
+    60%{opacity: 0.5;}
+    90%{opacity: 0.7;}
+    100%{opacity: 1;}
 }
 .title-welcome {
     font-size: 150px;

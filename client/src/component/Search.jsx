@@ -35,7 +35,7 @@ export default function Search (){
             />
             <button onClick={(e)=>{
                 handleClick(e)
-            }}><span class="material-symbols-outlined">
+            }}><span className="material-symbols-outlined">
             search
             </span></button>
         </div>

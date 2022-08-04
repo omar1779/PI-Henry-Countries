@@ -1,16 +1,28 @@
 .container {
     display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
+    justify-content: space-around;
     background-color: rgb(12, 12, 12);
     height: 88.2vh;
 }
-.container-activity{
-    margin: 0;
-    padding: 0;
-    text-align: center;
+.detail{
+    display: flex;
+    justify-content: space-around;
 }
-.activity{
+.container-activity{
+    margin: 20px;
+    padding: 0;
+    justify-content: center;
+}
+.container-activities{
     color: antiquewhite;
+    margin: 30px;
+    text-decoration: none;
+    color: antiquewhite;
+    text-align: center;
+    transition: 700ms;
+    display: flex;
+}
+.container-activities:hover{
+    background: rgb(255,229,0);
+    color: black;
 }

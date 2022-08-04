@@ -1,6 +1,7 @@
-import React,{ useState , useEffect ,useRef, useLayoutEffect} from "react";
+import React,{ useState , useLayoutEffect} from "react";
 import {useDispatch , useSelector} from 'react-redux'
 import {PostActivityCountry, getCountryName } from "../Redux/action";
+import CountryCard from "./CountryCard";
 import './style/CreateActivity.css'
 export default function CreateActivity (){
     /* inicializo funciones y creo estados para mi componente */
@@ -13,6 +14,7 @@ export default function CreateActivity (){
     const [countryObj, setCountryObj] = useState([])
     const [countrySearch, setCountrySearch] = useState([])
     const [error, setError] = useState(false)
+    const [createActivity, setCreateActivity] = useState(false)
     const countries = useSelector((state)=>state.allCountries)
     useLayoutEffect(()=>{
         dispatch(getCountryName(countrySearch))
@@ -45,11 +47,17 @@ export default function CreateActivity (){
     }
     const handledInputChange = (e)=>{
         e.preventDefault()
-        setCountrySearch(e.target.value)
+        if(e.target.value.length !==0){
+            setCountrySearch(e.target.value)
+        }
     }
     const handledButton = (e)=>{
         e.preventDefault()
-        setCountryObj([...countryObj, ...countries])
+        if(countryObj.length === 8){
+            alert('you reached the maximum number of countries to search')
+        }else{
+            setCountryObj([...countryObj, ...countries])
+        }
     }
     const handledButtonList = (e)=>{
         e.preventDefault()
@@ -57,16 +65,24 @@ export default function CreateActivity (){
     }
     const handleSubmit = (e)=>{
         e.preventDefault()
-        if(name && duration && difficulty && season && countryId){
+        if(name && duration && difficulty && season && countryId.length!==0){
             dispatch(PostActivityCountry(name,duration,difficulty,season,countryId))
+            setCreateActivity(false)
             alert('Activity Created')
         }else{
             alert('complete the form')
         }
     }
+    const returnActivity=(e)=>{
+        e.preventDefault()
+        setCreateActivity(true)
+        setCountryObj([])
+        setCountryId([])
+    }
     return(
-        <div className="containerForm">
-            <form className="form" onSubmit={(e)=>{
+        <div>{createActivity
+            ?<div className={`${countryObj.length === 0 ? 'containerForm' : 'containerDivide'}`}>
+            <form className='form' onSubmit={(e)=>{
                 handleSubmit(e)
             }}>
                 <h2>create a new activity</h2>
@@ -109,7 +125,7 @@ export default function CreateActivity (){
                     <select onChange={(e)=>{
                         postSeason(e)
                     }}>
-                        <option value="All the year">All the year</option>
+                        <option value="">Season</option>
                         <option value="Summer">Summer</option>
                         <option value="Winter">Winter</option>
                         <option value="Spring">Spring</option>
@@ -118,6 +134,28 @@ export default function CreateActivity (){
                 </div>
                 <input className="submit" type="submit"/>
             </form>
+            <div className="container-cards">
+            {countryObj?.map((c,)=>{
+                return(
+                    <div>
+                        <CountryCard
+                            name={c.name}
+                            flag={c.flag}
+                            continent={c.continent}
+                            population={c.population}
+                        />
+                    </div>
+                )
+            })}
+            </div>
+        </div>
+            :<div className="container-title-activity">
+                    <h1 className="title">Activity creator</h1>
+                    <button className="return-activity" onClick={(e)=>{
+                        returnActivity(e)
+                    }}>Create a new activity</button>
+            </div>
+        }
         </div>
     )
 }

@@ -13,6 +13,11 @@
     justify-content: flex-start;
     font-size: 26px;
     text-shadow: 10px 10px 10px black;
+    cursor: pointer;
+}
+.link{
+    color: inherit;
+    text-decoration: inherit;
 }
 .container-list {
     display: flex;

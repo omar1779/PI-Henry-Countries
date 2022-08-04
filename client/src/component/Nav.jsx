@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom'
 import Search from './Search'
 import './style/nav.css'
 
@@ -5,7 +6,9 @@ export default function Nav (props) {
     return (
         <nav className='nav'>
             <div className='container-title'>
-                <h1>HENRY COUNTRIES</h1>
+            <NavLink to={'/'} className={'link'}>
+                <h1 className='title-nav'>HENRY COUNTRIES</h1>
+            </NavLink>
             </div>
             <Search/>
             <div className='container-list'>
