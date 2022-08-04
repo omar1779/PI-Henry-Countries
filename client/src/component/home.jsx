@@ -36,6 +36,7 @@ export default function Home (){
     }
     const changeFilter = (e) =>{
         e.preventDefault();
+        setPage(0)
         setFilter(e.target.value)
     }
     return (
@@ -73,7 +74,7 @@ export default function Home (){
             </div>
             <div className="container-cards">
             {countries?.map((c)=>
-                        <NavLink to={'/home/'+ c.id}>
+                        <NavLink to={'/home/'+ c.id}key={c.id}>
                             <CountryCard
                                 key={c.id}
                                 name={c.name}

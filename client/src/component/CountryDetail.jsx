@@ -26,6 +26,7 @@ export default function CountryDetail (props){
                         capital = {`Capital :${c.capital}`}
                         subregion = {`Subregion :${c.subregion}`}
                         area = {`Area :${c.area} Km2`}
+                        tld = {c.tld}
                         population = {c.population}
                         />
                         <div className="container-activities">

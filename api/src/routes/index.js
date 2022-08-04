@@ -2,7 +2,7 @@ const { json } = require('body-parser');
 const bodyParser = require('body-parser');
 const { Router } = require('express');
 const axios = require('axios').default;
-const {Activity , Country} = require('../db.js')
+const {Activity , Country , Country_Activity} = require('../db.js')
 const { Op } =require('sequelize')
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
@@ -38,6 +38,7 @@ router.get('/countries', async (req , res,next)=>{
                 capital: e.capital ? e.capital[0] : "doesn't have capital",
                 subregion: e.subregion,
                 area: e.area,
+                tld: e.tld,
                 population: e.population,
                 };
             });
@@ -128,7 +129,7 @@ router.get('/activities',async (req , res)=>{
         next(error)
     }
 })
-router.post('/activities', async (req , res)=>{
+router.post('/activities', async (req , res,next)=>{
     const form = req.body;
     try {
         let [activityCreated , created] = await Activity.findOrCreate({
@@ -147,5 +148,34 @@ router.post('/activities', async (req , res)=>{
         next(error)
     }
 })
+router.delete('/delete/:id',async(req,res,next)=>{
+    try {
+        await Activity.destroy({
+            where: {
+                id : req.params.id
+            }
+        })
+        res.status(200).send('Deleted successfully')
+    } catch (error) {
+        next(error)
+    }
+})
+/* router.post('/prueba',async(req,res,next)=>{
+    const newCountry = req.body;
+    try {
+        const country = await Country.findOrCreate({
+            where:{
+                id : newCountry.id,
+                name : newCountry.name,
+                flag : newCountry.flag,
+                continent : newCountry.continent,
+                capital : newCountry.capital,
+            }
+        })
+        res.status(200).send(country)
+    } catch (error) {
+        next(error)
+    }
+}) */
 
 module.exports = router;

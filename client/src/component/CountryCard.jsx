@@ -2,7 +2,7 @@ import React from 'react';
 import './style/card.css'
 
   // FIJENSE DE HACERLO SI O SI CON FUNCTIONAL COMPONENT! SI NO LOS TEST NO PASAN.
-const CountryCard = ({name , flag ,continent, population,capital,subregion,area,id}) => {
+const CountryCard = ({name , flag ,continent, population,capital,subregion,area,id,tld}) => {
         return (
             <div className='CountryCard'>
             <img src={`${flag}`} alt="img not found"/>
@@ -12,6 +12,7 @@ const CountryCard = ({name , flag ,continent, population,capital,subregion,area,
             <p>{capital}</p>
             <p>{subregion}</p>
             <p>{area}</p>
+            <p>{tld}</p>
             <p>Population :{population}</p>
             </div>
         );
