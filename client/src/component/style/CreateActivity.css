@@ -1,10 +1,10 @@
 
 .containerForm{
-    background-color: rgb(12, 12, 12);
-    height: 88.2vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-top: 70px;
+    height: 100vh;
 }
 .alert{
     text-align: center;
@@ -12,8 +12,7 @@
     margin: 0;
 }
 .containerDivide{
-    background-color: rgb(12, 12, 12);
-    height: 88.2vh;
+    height: 100vh;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -21,12 +20,19 @@
     animation-duration: 2s;
     animation-timing-function: ease-out;
 }
+.container-cards-activity{
+    display: flex;
+    flex-wrap: wrap;
+    height: 80%;
+    width: 70%;
+}
 .form{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background: rgb(255,229,0);
+    color: aliceblue;
+    background: rgb(45,45,45);
     width: 375px;
     height: 650px;
     border-radius: 20px;
@@ -35,8 +41,7 @@
     margin-left: 50px;
 }
 .form:hover{
-    box-shadow: 20px 20px 20px rgb(255,229,0);
-    text-shadow: 10px 10px 10px;
+    box-shadow: 20px 20px 20px rgb(45, 45, 45);
 }
 .submit{
     margin-top: 20px;
@@ -74,13 +79,41 @@
     align-items: center;
 }
 .title{
-    color: aliceblue;
+    color: rgb(45, 45, 45);
     font-size: 100px;
 }
 .return-activity{
-    background-color: yellow;
+    background-color: rgb(45, 45, 45);
+    color: aliceblue;
     width: 300px;
     height: 100px;
     font-size: 20px;
     cursor: pointer;
+}
+@media (max-width: 750px) {
+    .return-activity {
+        font-size: 15px;
+        width: 250px;
+        height: 75px;
+    }
+    .title{
+        font-size: 75px;
+    }
+    .containerDivide{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .container-cards{
+        width: 100%;
+    }
+}
+@media (max-width: 550px) {
+    .return-activity {
+        font-size: 13px;
+        width: 200px;
+        height: 50px;
+    }
+    .title{
+        font-size: 45px;
+    }
 }

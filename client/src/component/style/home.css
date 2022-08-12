@@ -3,9 +3,8 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    background-color: rgb(12, 12, 12);
-    height: 88.2vh;
     animation: move 3s;
+    padding-top: 80px;
 }
 @keyframes move {
     10%{opacity: 0;}
@@ -19,17 +18,13 @@
     flex-wrap: wrap;
     justify-content: space-evenly;
 }
+
 .container-filters-forms {
-    width: 10%;
     display: flex;
-    justify-content: space-around;
-    color: aliceblue;
-    flex-direction: column;
-    background-color: yellow;
-    color: rgb(12, 12, 12);
-    margin: 30px;
-    border-radius: 5px;
-}
+    width: 350px;
+    justify-content: space-between;
+    background-color: rgb(50, 50, 50);
+}/*
 h3{
     margin:0;
 }
@@ -46,4 +41,4 @@ h3{
     justify-content: space-around;
     align-items: center;
     width: 100%;
-}
+} */

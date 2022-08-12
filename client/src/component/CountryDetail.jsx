@@ -4,6 +4,8 @@ import { getCountryId } from "../Redux/action";
 import CountryCard from'./CountryCard'
 import Activity from "./Activity";
 import './style/detail.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 export default function CountryDetail (props){
     const dispatch = useDispatch()
@@ -11,13 +13,12 @@ export default function CountryDetail (props){
         dispatch(getCountryId(props.match.params.id))
     },[dispatch, props.match.params.id])
     const idCountry = useSelector((state)=>state.allCountries)
-    console.log(idCountry, 'algo')
     return(
         <div className="container">
             <div className="detail">
             {idCountry?.map((c)=>{
                 return(
-                    <div className="container-card">
+                    <div className="container-card"key={c.id}>
                         <CountryCard
                         flag = {c.flag}
                         name = {c.name}

@@ -1,19 +1,22 @@
 .container {
     display: flex;
     justify-content: space-around;
-    background-color: rgb(12, 12, 12);
-    height: 88.2vh;
+    align-items: center;
+    height: 100vh;
+/*     background-color: rgb(12, 12, 12);
+    height: 88.2vh; */
 }
 .detail{
     display: flex;
     justify-content: space-around;
+    width: 15.8rem;
 }
 .container-activity{
     margin: 20px;
     padding: 0;
     justify-content: center;
 }
-.container-activities{
+/* .container-activities{
     color: antiquewhite;
     margin: 30px;
     text-decoration: none;
@@ -21,8 +24,4 @@
     text-align: center;
     transition: 700ms;
     display: flex;
-}
-.container-activities:hover{
-    background: rgb(255,229,0);
-    color: black;
-}
+} */

@@ -1,11 +1,13 @@
 
 import './App.css';
 import { Route } from 'react-router-dom';
-import Nav from './component/Nav'
+import NavScrollExample from './component/Nav.jsx'
 import Home from './component/home';
 import Welcome from './component/welcome';
 import CountryDetail from './component/CountryDetail';
 import CreateActivity from './component/CreateActivity';
+import AboutMe from './component/AboutMe';
+
 /* __________________________________________________________________________ */
 function App() {
     return (
@@ -14,17 +16,18 @@ function App() {
             <Welcome/>
         </Route>
         <Route exact path='/home'>
-            <Nav/>
+            <NavScrollExample/>
             <Home/>
         </Route>
-        <Route exact path="/home/:id"component={Nav} />
+        <Route exact path="/home/:id"component={NavScrollExample} />
         <Route exact path="/home/:id"component={CountryDetail} />
         <Route path='/activity'>
-            <Nav/>
+            <NavScrollExample/>
             <CreateActivity/>
         </Route>
         <Route path='/aboutme'>
-            <Nav/>
+            <NavScrollExample/>
+            <AboutMe/>
         </Route>
         </div>
     );

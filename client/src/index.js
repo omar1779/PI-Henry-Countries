@@ -8,12 +8,12 @@ import store from './Redux/store/index.js'
 import {BrowserRouter} from 'react-router-dom'
 
 ReactDOM.render(
-  <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </Provider>,
-  document.getElementById('root')
+	<Provider store={store}>
+		<BrowserRouter>
+			<App />
+		</BrowserRouter>
+	</Provider>,
+	document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -3,6 +3,8 @@ import {useDispatch , useSelector} from 'react-redux'
 import {PostActivityCountry, getCountryName } from "../Redux/action";
 import CountryCard from "./CountryCard";
 import './style/CreateActivity.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 export default function CreateActivity (){
     /* inicializo funciones y creo estados para mi componente */
     const dispatch = useDispatch();
@@ -80,13 +82,12 @@ export default function CreateActivity (){
         setCountryId([])
     }
     return(
-        <div>{createActivity
+        <div className="bg-light">{createActivity
             ?<div className={`${countryObj.length === 0 ? 'containerForm' : 'containerDivide'}`}>
             <form className='form' onSubmit={(e)=>{
                 handleSubmit(e)
             }}>
                 <h2>create a new activity</h2>
-                <h3>Add countries</h3>
                 <input
                     type={'text'}
                     placeholder={'Search Country'}
@@ -97,20 +98,20 @@ export default function CreateActivity (){
                 <div className="container-button">
                     <button className="button" onClick={(e)=>{
                         handledButton(e)
-                    }}>search country</button>
+                    }}>search</button>
                     <button className="button" onClick={(e)=>{
                         handledButtonList(e)
-                    }}>Add to country list</button>
+                    }}>Add</button>
                 </div>
-                <h3>Activity</h3>
+                <h4>Activity</h4>
                 <input className={error && 'danger'} type="text" placeholder="name" onChange={(e)=>{
                     postName(e)
                 }}/>
-                <h3>Duration in hours</h3>
+                <h4>Duration in hours</h4>
                 <input className={error && 'danger'} type="number" placeholder="duration" onChange={(e)=>{
                     postDuration(e)
                 }}/>
-                <h3>Difficulty</h3>
+                <h4>Difficulty</h4>
                     <select onChange={(e)=>{
                         postDifficulty(e)
                     }}>
@@ -120,7 +121,7 @@ export default function CreateActivity (){
                         <option value="4">Hard</option>
                         <option value="5">Very hard</option>
                     </select>
-                <h3>select the season</h3>
+                <h4>select the season</h4>
                 <div className="inputSelect">
                     <select onChange={(e)=>{
                         postSeason(e)
@@ -134,15 +135,13 @@ export default function CreateActivity (){
                 </div>
                 <input className="submit" type="submit"/>
             </form>
-            <div className="container-cards">
+            <div className="container-cards-activity bg-light">
             {countryObj?.map((c,)=>{
                 return(
                     <div>
                         <CountryCard
                             name={c.name}
                             flag={c.flag}
-                            continent={c.continent}
-                            population={c.population}
                         />
                     </div>
                 )

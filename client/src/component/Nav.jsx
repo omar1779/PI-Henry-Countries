@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom'
+/* import { NavLink } from 'react-router-dom'
 import Search from './Search'
 import './style/nav.css'
 
@@ -20,4 +20,34 @@ export default function Nav (props) {
             </div>
         </nav>
     )
+} */
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Search from './Search';
+
+function NavScrollExample() {
+    return (
+        <Navbar bg="dark" expand="lg" className='fixed-top margin mb-2'>
+        <Container fluid>
+            <Navbar.Brand className='text-light' href="/">Henry Countries</Navbar.Brand>
+            <Navbar.Toggle aria-controls="navbarScroll" />
+            <Navbar.Collapse id="navbarScroll">
+            <Nav
+                className="me-auto my-2 my-lg-0"
+                style={{ maxHeight: '100px' }}
+                navbarScroll
+            >
+                <Nav.Link className='text-light' href="/home">Home</Nav.Link>
+                <Nav.Link className='text-light' href="/activity">Activity</Nav.Link>
+                <Nav.Link className='text-light' href="/aboutme">About Me</Nav.Link>
+            </Nav>
+            <Search/>
+            </Navbar.Collapse>
+        </Container>
+        </Navbar>
+    );
 }
+
+export default NavScrollExample;

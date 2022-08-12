@@ -4,6 +4,8 @@ import { getCountryFilter} from '../Redux/action/index.js'
 import {useDispatch, useSelector} from 'react-redux'
 import {NavLink} from 'react-router-dom'
 import './style/home.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 export default function Home (){
     const [order, setOrder] = useState("ASC");
@@ -40,15 +42,13 @@ export default function Home (){
         setFilter(e.target.value)
     }
     return (
-        <div className="container-home">
+        <div className="container-home bg-light">
             <div className="filter">
                 <div className="container-filters-forms">
-                    <h3>list order forms :</h3>
                     <select onChange={(e)=>{changeOrder(e)}}>
                         <option value="ASC">Ascending</option>
                         <option value="DESC">Descending</option>
                     </select>
-                    <h3>list order forms :</h3>
                     <select onChange={(e)=>{changeFilter(e)}}>
                         <option value="">All countries</option>
                         <option value="Africa">Africa</option>
@@ -58,23 +58,21 @@ export default function Home (){
                         <option value="Oceania">Oceania</option>
                         <option value="Population">Population</option>
                     </select>
-                </div>
-                <div className="container-page-control">
                     <button onClick={
                         (e)=>{prev(e)}
                         }disabled={page <=0}
-                        >Prev
+                        ><i class="fa-solid fa-angles-left text-light"></i>
                     </button>
                     <button onClick={
                         (e)=>{next(e)}
                         }/* disabled={countries.length < 10} */
-                        >Next
+                        ><i class="fa-solid fa-angles-right text-light"></i>
                     </button>
                 </div>
             </div>
-            <div className="container-cards">
+            <div className="container-cards text-decoration-none">
             {countries?.map((c)=>
-                        <NavLink to={'/home/'+ c.id}key={c.id}>
+                        <NavLink to={'/home/'+ c.id}key={c.id} style={{ textDecoration: 'none' }}>
                             <CountryCard
                                 key={c.id}
                                 name={c.name}
