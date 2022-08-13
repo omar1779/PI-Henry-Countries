@@ -11,6 +11,7 @@ export default function Home (){
     const [order, setOrder] = useState("ASC");
     const [page , setPage] = useState(0);
     const [filter, setFilter] = useState("");
+    const [modeNight, setModeNight]= useState(false)
     const dispatch = useDispatch();
     useEffect(()=>{
         dispatch(getCountryFilter(page,order,filter))
@@ -40,6 +41,14 @@ export default function Home (){
         e.preventDefault();
         setPage(0)
         setFilter(e.target.value)
+    }
+    const handler = (e)=>{
+        e.preventDefault(e)
+        if (modeNight===false){
+            setModeNight(true)
+        }else{
+            setModeNight(false)
+        }
     }
     return (
         <div className="container-home bg-light">

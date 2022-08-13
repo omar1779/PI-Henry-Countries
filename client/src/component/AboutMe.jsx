@@ -2,9 +2,22 @@ import React,{useState} from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function AboutMe (){
-    const [modeNight, setModeNight]= useState(true)
+    const [modeNight, setModeNight]= useState(false)
+    const handler = (e)=>{
+        e.preventDefault(e)
+        if (modeNight===false){
+            setModeNight(true)
+        }else{
+            setModeNight(false)
+        }
+    }
     return(
-        <div className="container d-flex justify-content-center align-items-center flex-column">
+        <div style={{
+            padding: '0px 100px 0px 100px',
+            height: '100vh',
+        }} className={`d-flex justify-content-center align-items-center flex-column
+        ${modeNight? 'bg-dark text-light': 'bg-light text-dark'}
+        `}>
             <div className="text-start">
             <h2 className="display-2">Hello user ,I'm Omar Sosa</h2>
             <h4>
@@ -27,11 +40,12 @@ export default function AboutMe (){
                     <li>
                         <a style={{
                             textDecoration: 'none',
-                            color: "black",
                             fontSize : '27px',
                             marginRight: '20px'
                         }}href="https://github.com/omar1779" target='blank'>
-                        <i class="fa-brands fa-github">GitHub</i></a>
+                        <i class={`fa-brands fa-github
+                        ${modeNight? 'text-light': 'text-dark'}
+                        `}>GitHub</i></a>
                     </li>
                     <li>
                         <a style={{
@@ -42,6 +56,17 @@ export default function AboutMe (){
                     </li>
                 </ul>
             </div>
+            <br />
+            <div>
+                    <h4>
+                        test night mode
+                        <button className="m-3" onClick={(e)=>{
+                            handler(e)
+                        }}>
+                        <i class="fa-solid fa-moon bg-light ">
+                        </i></button>
+                    </h4>
+                </div>
         </div>
     )
 }
